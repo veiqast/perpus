@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<a href="/buku">Kelola Buku</a>
 <html>
 <head>
     <title>Dashboard</title>
@@ -8,32 +7,56 @@
 
 <h2>Dashboard Perpustakaan</h2>
 
-<p>Selamat datang {{ session('username') }}</p>
-
-<a href="/logout">Logout</a>
-<a href="/anggota">Data Anggota</a>
-<a href="/peminjaman">Peminjaman Buku</a>
+<p>
+Selamat datang {{ session('username') }}
+</p>
 
 <hr>
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>No</th>
-        <th>Judul</th>
-        <th>Pengarang</th>
-        <th>Penerbit</th>
-        <th>Stok</th>
-    </tr>
+<a href="/buku">Data Buku</a>
 
-    @foreach($buku as $item)
-    <tr>
-        <td>{{ $loop->iteration }}</td>
-        <td>{{ $item->judul }}</td>
-        <td>{{ $item->pengarang }}</td>
-        <td>{{ $item->penerbit }}</td>
-        <td>{{ $item->stok }}</td>
-    </tr>
-    @endforeach
+<br><br>
+
+<a href="/anggota">Data Anggota</a>
+
+<br><br>
+
+<a href="/peminjaman">Peminjaman Buku</a>
+
+<br><br>
+
+<a href="/logout">Logout</a>
+
+<hr>
+
+<h3>Statistik</h3>
+
+<table border="1" cellpadding="10">
+
+<tr>
+    <td>Total Buku</td>
+    <td>{{ $totalBuku }}</td>
+</tr>
+
+<tr>
+    <td>Total Anggota</td>
+    <td>{{ $totalAnggota }}</td>
+</tr>
+
+<tr>
+    <td>Sedang Dipinjam</td>
+    <td>{{ $dipinjam }}</td>
+</tr>
+
+<tr>
+    <td>Sudah Dikembalikan</td>
+    <td>{{ $dikembalikan }}</td>
+</tr>
+
+<tr>
+    <td>Total Denda</td>
+    <td>Rp. {{ $totalDenda }}</td>
+</tr>
 
 </table>
 

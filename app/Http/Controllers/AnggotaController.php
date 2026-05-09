@@ -22,7 +22,7 @@ class AnggotaController extends Controller
     {
         Anggota::create([
             'nama' => $request->nama,
-            'jk' => $request->jk,
+            'jenis_kelamin' => $request->jenis_kelamin,
             'telp' => $request->telp,
             'alamat' => $request->alamat
         ]);
@@ -34,7 +34,7 @@ class AnggotaController extends Controller
     {
         Anggota::where('id', $id)->update([
             'nama' => $request->nama,
-            'jk' => $request->jk,
+            'jenis_kelamin' => $request->jenis_kelamin,
             'telp' => $request->telp,
             'alamat' => $request->alamat
         ]);

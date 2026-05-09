@@ -12,7 +12,7 @@ class anggota extends Model
     public $timestamps = false;
     protected $fillable = [
         'nama',
-        'jk',
+        'jenis_kelamin',
         'alamat',
         'no_telp',
     ];

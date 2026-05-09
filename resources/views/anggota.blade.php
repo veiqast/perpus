@@ -22,8 +22,15 @@
     <input type="text" name="nama" placeholder="Nama">
     <br><br>
 
-    <input type="text" name="jk" placeholder="Jenis Kelamin">
-    <br><br>
+   <div class="mb-3">
+    <label>Jenis Kelamin</label>
+
+    <select name="jenis_kelamin" class="form-control" required>
+        <option value="">-- Pilih Jenis Kelamin --</option>
+        <option value="L">Laki-laki</option>
+        <option value="P">Perempuan</option>
+    </select>
+</div>
 
     <input type="text" name="telp" placeholder="No Telp">
     <br><br>
@@ -42,7 +49,7 @@
 <tr>
     <th>No</th>
     <th>Nama</th>
-    <th>JK</th>
+    <th>Jenis Kelamin</th>
     <th>Telp</th>
     <th>Alamat</th>
     <th>Aksi</th>
@@ -63,7 +70,7 @@
 </td>
 
 <td>
-    <input type="text" name="jk" value="{{ $item->jk }}">
+    <input type="text" name="jk" value="{{ $item->jenis_kelamin }}">
 </td>
 
 <td>
