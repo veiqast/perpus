@@ -70,7 +70,7 @@
 </td>
 
 <td>
-    <input type="text" name="jk" value="{{ $item->jenis_kelamin }}">
+    <input type="text" name="jk " value="{{ $item->jenis_kelamin }}">
 </td>
 
 <td>
@@ -87,9 +87,11 @@
     Update
 </button>
 
+@if(session('level_user') == 'admin')
 <a href="/anggota/delete/{{ $item->id }}">
     Delete
 </a>
+@endif
 
 </td>
 
@@ -103,3 +105,21 @@
 
 </body>
 </html>
+<hr>
+
+<form action="/anggota" method="GET">
+
+<input
+    type="text"
+    name="search"
+    placeholder="Cari anggota"
+    value="{{ $search ?? '' }}"
+>
+
+<button type="submit">
+    Cari
+</button>
+
+</form>
+
+<hr>

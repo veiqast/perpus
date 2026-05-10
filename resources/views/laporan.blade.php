@@ -1,4 +1,17 @@
-<table border="1" cellpadding="10">
+<<!DOCTYPE html>
+<html>
+<head>
+    <title>Laporan Peminjaman</title>
+</head>
+<body onload="window.print()">
+
+<h2 align="center">
+    LAPORAN PEMINJAMAN BUKU
+</h2>
+
+<hr>
+
+<table border="1" width="100%" cellpadding="10" cellspacing="0">
 
 <tr>
     <th>No</th>
@@ -6,25 +19,12 @@
     <th>Buku</th>
     <th>Tanggal Pinjam</th>
     <th>Batas Kembali</th>
-    <th>Tanggal Dikembalikan</th>
+    <th>Dikembalikan</th>
     <th>Denda</th>
     <th>Status</th>
-    <th>Aksi</th>
 </tr>
 
 @foreach($peminjaman as $item)
-
-<th>Petugas</th>
-<td>{{ $item->user->username }}</td>
-<tr>
-    <th>No</th>
-    <th>Nama</th>
-    <th>Buku</th>
-    <th>Petugas</th>
-    <th>Tanggal Pinjam</th>
-    <th>Status</th>
-</tr>
-
 
 <tr>
 
@@ -44,28 +44,13 @@
 Rp. {{ $item->denda }}
 </td>
 
-<td>
-{{ $item->status }}
-</td>
-
-<td>
-
-@if($item->status == 'dipinjam')
-
-<a href="/peminjaman/kembali/{{ $item->id }}">
-    Kembalikan
-</a>
-
-@endif
-
-</td>
+<td>{{ $item->status }}</td>
 
 </tr>
 
 @endforeach
 
 </table>
-<a href="/laporan" target="_blank">
-    Cetak Laporan
-</a>
 
+</body>
+</html>

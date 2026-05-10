@@ -7,15 +7,28 @@ use App\Models\Anggota;
 
 class AnggotaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (!session('login')) {
-            return redirect('/');
+
+
+        $search = $request->search;
+
+        if ($search) {
+
+            $anggota = Anggota::where(
+                'nama',
+                'like',
+                '%' . $search . '%'
+            )->get();
+        } else {
+
+            $anggota = Anggota::all();
         }
 
-        $anggota = Anggota::all();
-
-        return view('anggota', compact('anggota'));
+        return view('anggota', compact(
+            'anggota',
+            'search'
+        ));
     }
 
     public function store(Request $request)
@@ -44,6 +57,10 @@ class AnggotaController extends Controller
 
     public function delete($id)
     {
+        if (session('level_user') != 'admin') {
+            return redirect('/anggota');
+        }
+
         Anggota::where('id', $id)->delete();
 
         return redirect('/anggota');

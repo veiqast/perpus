@@ -12,9 +12,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        if (!session('login')) {
-            return redirect('/');
-        }
+
 
         $totalBuku = Buku::count();
 

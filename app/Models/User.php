@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Peminjaman;
 
 class User extends Model
 {
@@ -15,4 +16,8 @@ class User extends Model
         'password',
         'level_user'
     ];
+    public function peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
 }

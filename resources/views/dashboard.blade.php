@@ -1,64 +1,75 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
 
 <h2>Dashboard Perpustakaan</h2>
 
-<p>
-Selamat datang {{ session('username') }}
-</p>
+<div class="row">
 
-<hr>
+<div class="col-md-3">
 
-<a href="/buku">Data Buku</a>
+<div class="card">
 
-<br><br>
+<div class="card-body">
 
-<a href="/anggota">Data Anggota</a>
+<h5>Total Buku</h5>
 
-<br><br>
+<h3>{{ $totalBuku }}</h3>
 
-<a href="/peminjaman">Peminjaman Buku</a>
+</div>
 
-<br><br>
+</div>
 
-<a href="/logout">Logout</a>
+</div>
 
-<hr>
+<div class="col-md-3">
 
-<h3>Statistik</h3>
+<div class="card">
 
-<table border="1" cellpadding="10">
+<div class="card-body">
 
-<tr>
-    <td>Total Buku</td>
-    <td>{{ $totalBuku }}</td>
-</tr>
+<h5>Total Anggota</h5>
 
-<tr>
-    <td>Total Anggota</td>
-    <td>{{ $totalAnggota }}</td>
-</tr>
+<h3>{{ $totalAnggota }}</h3>
 
-<tr>
-    <td>Sedang Dipinjam</td>
-    <td>{{ $dipinjam }}</td>
-</tr>
+</div>
 
-<tr>
-    <td>Sudah Dikembalikan</td>
-    <td>{{ $dikembalikan }}</td>
-</tr>
+</div>
 
-<tr>
-    <td>Total Denda</td>
-    <td>Rp. {{ $totalDenda }}</td>
-</tr>
+</div>
 
-</table>
+<div class="col-md-3">
 
-</body>
-</html>
+<div class="card">
+
+<div class="card-body">
+
+<h5>Dipinjam</h5>
+
+<h3>{{ $dipinjam }}</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card">
+
+<div class="card-body">
+
+<h5>Total Denda</h5>
+
+<h3>Rp {{ $totalDenda }}</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+@endsection

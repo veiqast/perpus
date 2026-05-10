@@ -75,9 +75,13 @@
     <td>
         <button type="submit">Update</button>
 
-        <a href="/buku/delete/{{ $item->id }}">
-            Delete
-        </a>
+        @if(session('level_user') == 'admin')
+
+<a href="/buku/delete/{{ $item->id }}">
+    Delete
+</a>
+
+@endif
     </td>
 
 </form>
@@ -90,3 +94,21 @@
 
 </body>
 </html>
+<hr>
+
+<form action="/buku" method="GET">
+
+<input
+    type="text"
+    name="search"
+    placeholder="Cari judul buku"
+    value="{{ $search ?? '' }}"
+>
+
+<button type="submit">
+    Cari
+</button>
+
+</form>
+
+<hr>

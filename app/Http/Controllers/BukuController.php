@@ -7,23 +7,31 @@ use App\Models\Buku;
 
 class BukuController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        if (!session('login')) {
-            return redirect('/');
+
+        $search = $request->search;
+
+        if ($search) {
+
+            $buku = Buku::where(
+                'judul',
+                'like',
+                '%' . $search . '%'
+            )->get();
+        } else {
+
+            $buku = Buku::all();
         }
 
-        $buku = Buku::all();
-
-        return view('buku', compact('buku'));
+        return view('buku.index', compact(
+            'buku',
+            'search'
+        ));
     }
 
     public function create()
     {
-        if (!session('login')) {
-            return redirect('/');
-        }
-
         return view('buku.create');
     }
 
@@ -39,16 +47,29 @@ class BukuController extends Controller
         return redirect('/buku');
     }
 
+    public function edit($id)
+    {
+        $buku = Buku::find($id);
+
+        return view('buku.edit', compact('buku'));
+    }
+
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'stok' => 'required|numeric|min:0'
+        ]);
+
         Buku::where('id', $id)->update([
             'judul' => $request->judul,
             'pengarang' => $request->pengarang,
             'penerbit' => $request->penerbit,
             'stok' => $request->stok
         ]);
+
         return redirect('/buku');
     }
+
     public function delete($id)
     {
         Buku::where('id', $id)->delete();

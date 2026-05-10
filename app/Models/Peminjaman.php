@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Anggota;
 use App\Models\Buku;
+use App\Models\User;
 
 class Peminjaman extends Model
 {
@@ -14,6 +15,7 @@ class Peminjaman extends Model
     protected $fillable = [
         'anggota_id',
         'buku_id',
+        'user_id',
         'tanggal_pinjam',
         'tanggal_kembali',
         'tanggal_dikembalikan',
@@ -28,5 +30,9 @@ class Peminjaman extends Model
     public function buku()
     {
         return $this->belongsTo(Buku::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
