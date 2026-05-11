@@ -31,24 +31,41 @@ class AnggotaController extends Controller
         ));
     }
 
+    public function create()
+    {
+        return view('anggota.create');
+    }
     public function store(Request $request)
     {
         Anggota::create([
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'telp' => $request->telp,
+            'no_telp' => $request->no_telp,
             'alamat' => $request->alamat
         ]);
 
         return redirect('/anggota');
     }
+    public function edit($id)
+    {
+        $anggota = Anggota::find($id);
+
+        return view('anggota.edit', compact(
+            'anggota'
+        ));
+    }
 
     public function update(Request $request, $id)
     {
+        request()->validate([
+            'nama' => 'required',
+            'no_telp' => 'required',
+        ]);
+
         Anggota::where('id', $id)->update([
             'nama' => $request->nama,
             'jenis_kelamin' => $request->jenis_kelamin,
-            'telp' => $request->telp,
+            'no_telp' => $request->no_telp,
             'alamat' => $request->alamat
         ]);
 

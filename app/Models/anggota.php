@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Peminjaman;
 
-class anggota extends Model
+class Anggota extends Model
 {
     protected $table = 'anggota';
     public $timestamps = false;

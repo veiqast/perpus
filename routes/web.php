@@ -16,13 +16,12 @@ Route::get('/', [AuthController::class, 'login']);
 Route::post('/proses-login', [AuthController::class, 'prosesLogin']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
-
-Route::get('/dashboard', [DashboardController::class, 'index']);
-
 Route::get('/anggota', [AnggotaController::class, 'index']);
+Route::get('/anggota/create', [AnggotaController::class, 'create']);
 Route::post('/anggota/store', [AnggotaController::class, 'store']);
-Route::get('/anggota/delete/{id}', [AnggotaController::class, 'delete']);
+Route::get('/anggota/edit/{id}', [AnggotaController::class, 'edit']);
 Route::post('/anggota/update/{id}', [AnggotaController::class, 'update']);
+Route::get('/anggota/delete/{id}', [AnggotaController::class, 'delete']);
 
 Route::get('/buku', [BukuController::class, 'index']);
 Route::get('/buku/create', [BukuController::class, 'create']);

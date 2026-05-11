@@ -32,7 +32,7 @@
     </select>
 </div>
 
-    <input type="text" name="telp" placeholder="No Telp">
+    <input type="text" name="no_telp" placeholder="no_Telp">
     <br><br>
 
     <textarea name="alamat" placeholder="Alamat"></textarea>
@@ -50,7 +50,7 @@
     <th>No</th>
     <th>Nama</th>
     <th>Jenis Kelamin</th>
-    <th>Telp</th>
+    <th>No Telp</th>
     <th>Alamat</th>
     <th>Aksi</th>
 </tr>
@@ -70,11 +70,11 @@
 </td>
 
 <td>
-    <input type="text" name="jk " value="{{ $item->jenis_kelamin }}">
+    <input type="text" name="jenis_kelamin" value="{{ $item->jenis_kelamin }}">
 </td>
 
 <td>
-    <input type="text" name="telp" value="{{ $item->telp }}">
+    <input type="text" name="no_telp" value="{{ $item->no_telp }}">
 </td>
 
 <td>

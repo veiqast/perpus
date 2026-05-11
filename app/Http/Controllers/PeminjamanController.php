@@ -32,29 +32,26 @@ class PeminjamanController extends Controller
 
     public function store(Request $request)
     {
-
-        $buku = Buku::find($request->id_buku);
-
-        if ($buku->stok < 1) {
-            return back('/peminjaman')
-                ->with('error', 'Stok buku tidak tersedia');
-        }
-
-        Peminjaman::create([
-            'id_anggota' => $request->id_anggota,
-            'id_buku' => $request->id_buku,
-            'user_id' => session('user_id'),
-            'tanggal_pinjam' => $request->tanggal_pinjam,
-            'tanggal_kembali' => $request->tanggal_kembali,
-            'status' => 'dipinjam',
-            'denda' => 0
+        $validated = $request->validate([
+            'id_anggota' => 'required|exists:anggota,id',
+            'id_buku' => 'required|exists:buku,id',
+            'tanggal_pinjam' => 'required|date',
+            'tanggal_kembali' => 'required|date|after:tanggal_pinjam',
         ]);
 
-        $buku->stok = $buku->stok - 1;
+        $buku = Buku::findOrFail($validated['id_buku']);
 
-        $buku->save();
+        if ($buku->stok < 1) {
+            return back()->with('error', 'Stok tidak tersedia');
+        }
 
-        return redirect('/peminjaman');
+        Peminjaman::create($validated);
+        $buku->decrement('stok');
+
+        return redirect('/peminjaman')->with('success', 'Peminjaman berhasil');
+
+        $buku->decrement('stok');
+        $buku->increment('stok');
     }
 
     public function kembali($id)
